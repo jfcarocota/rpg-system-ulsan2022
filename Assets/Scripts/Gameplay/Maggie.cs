@@ -8,6 +8,10 @@ public class Maggie : Hero
     {
         //if(gamemanager,.insta.gamemode.GetLeader.gameObject == gameObject)
         base.Movement();
-        anim.SetFloat("Move", Mathf.Abs(Axis.magnitude));
+        anim.SetFloat("Move", MovementValue);
+        /*if(ImLeader || (!ImLeader && CanMoveToleader))
+        {
+            anim.SetFloat("Move", Mathf.Abs(Axis.magnitude));
+        }*/
     }
 }

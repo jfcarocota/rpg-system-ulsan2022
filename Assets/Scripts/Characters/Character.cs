@@ -12,6 +12,7 @@ public class Character : LivingObject
     protected float moveSpeed = 5f;
     protected GameInputs gameInputs;
     protected Animator anim;
+    protected Vector3 lastPostion;
 
     void Awake()
     {
@@ -31,6 +32,7 @@ public class Character : LivingObject
 
     protected void Update()
     {
+        lastPostion = transform.position;
         Movement();
     }
     protected virtual void Movement ()
@@ -50,7 +52,9 @@ public class Character : LivingObject
 
     Quaternion RotationDirection => Quaternion.LookRotation(Axis);
 
-    protected bool IsMoving => Axis != Vector3.zero;
+    public bool IsMoving => Axis != Vector3.zero;
+
+    public bool IsTranslating => transform.position - lastPostion != Vector3.zero;
 
     protected Vector3 Axis => new Vector3(gameInputs.Gameplay.Horizontal.ReadValue<float>(), 0f, gameInputs.Gameplay.Vertical.ReadValue<float>());
 }
